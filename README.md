@@ -15,7 +15,7 @@ python3 shellgen.py
 ## ✨ Features
 <b>
   
-* Supports seven languages: Bash, Python, PHP, Perl, Netcat, Java and Xterm.
+* Supports eighth languages: Bash, Python, PHP, Perl, Netcat, Java, Xterm and Powershell
 
 * Instant generation: Simply select a number, IP address and port to create a reverse shell that is ready to use.
 
