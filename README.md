@@ -1,5 +1,5 @@
 # 🔥 Reverse-shell-generator 
-![](images/nwe.png)
+![](images/py.png)
 ## 🚀 Installation
 <b>You can use the Reverse Shell Generator script by cloning the repository:</b>
 ```python
